@@ -5,13 +5,17 @@ using UnityEngine;
 public class Blast : MonoBehaviour
 {
     public float speed;
+    public float duration;
     Rigidbody2D rb;
+    [HideInInspector]
+    public Player owner;
 
     void Start()
     {
-        LeanTween.scale(gameObject, Vector2.zero, 1).setEase(LeanTweenType.easeInCubic).setDestroyOnComplete(true);
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
+        LeanTween.scale(gameObject, Vector2.zero, duration).setEase(LeanTweenType.easeInCubic).setDestroyOnComplete(true);
+        GetComponent<SpriteRenderer>().color = owner.GetComponent<SpriteRenderer>().color;
     }
 
     void Update()
@@ -21,9 +25,12 @@ public class Blast : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject != owner.gameObject)
         {
-            other.gameObject.GetComponent<Player>().Die();
+            if (other.gameObject.CompareTag("Player"))
+            {
+                other.gameObject.GetComponent<Player>().Die();
+            }
         }
     }
 }

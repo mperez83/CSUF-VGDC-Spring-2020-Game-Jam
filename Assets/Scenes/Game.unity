@@ -479,6 +479,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa7dbfa3820aab45904a76dd0ae0171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxIntensity: 0.4
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -2032,6 +2033,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8128302239640920183, guid: 6d5fb4a57d1d5b74f81a820f77f777e0,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d5fb4a57d1d5b74f81a820f77f777e0, type: 3}
 --- !u!1001 &8128302240054084600
@@ -2115,6 +2121,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8128302239640920183, guid: 6d5fb4a57d1d5b74f81a820f77f777e0,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8128302239919770981, guid: 6d5fb4a57d1d5b74f81a820f77f777e0,
         type: 3}

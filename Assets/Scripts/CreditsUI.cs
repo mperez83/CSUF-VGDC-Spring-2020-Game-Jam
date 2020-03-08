@@ -8,7 +8,7 @@ public class CreditsUI : MonoBehaviour
 
     public void BackButton()
     {
-        FadeHandler.instance.FadeOut("MainMenu", 1);
+        FadeHandler.instance.FadeOut("MainMenu", 0.5f);
     }
 
     public void SecretButton()

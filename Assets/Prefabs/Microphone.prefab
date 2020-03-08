@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 3065849304424978665}
   - component: {fileID: 7258481168139319945}
   m_Layer: 0
-  m_Name: Trumpet
+  m_Name: Microphone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,12 +76,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4612d3536fcc4e4c9a610d470c8d81d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundBlastPower: 10
-  degreeOffset: 0
-  cooldownTimerLength: 0.75
-  screenShake: 0.1
-  additiveKnockback: 0
-  blastPrefab: {fileID: 1264830685793990311, guid: b64f2c8ad534dca40a9d02d688cd0938,
+  soundBlastPower: 0.25
+  degreeOffset: 60
+  cooldownTimerLength: 0.05
+  screenShake: 0
+  additiveKnockback: 1
+  blastPrefab: {fileID: 1264830685793990311, guid: c855ff315b36f44478bfbe95d4bc1bca,
     type: 3}
   blastSpawnPoint: {fileID: 7457636032007040517}
 --- !u!212 &3065849304424978665

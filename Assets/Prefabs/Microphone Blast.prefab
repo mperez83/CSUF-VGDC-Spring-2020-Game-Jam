@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5759144858786800472}
   - component: {fileID: 5530741230304170853}
   m_Layer: 0
-  m_Name: Trumpet Blast
+  m_Name: Microphone Blast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1264830685793990311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21b48517be122794f835ebfffc51a4b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  duration: 1
+  speed: 4
+  duration: 0.5
   owner: {fileID: 0}
 --- !u!212 &1264830685793990309
 SpriteRenderer:

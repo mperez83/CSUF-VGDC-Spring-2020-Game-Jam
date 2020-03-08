@@ -25,6 +25,7 @@ public class MatchHandler : MonoBehaviour
             winText.gameObject.SetActive(true);
             winText.text = "Player " + winPlayer.playerNum + " wins!!!\n(your firerate is now infinite)";
             winText.color = winPlayer.GetComponent<SpriteRenderer>().color;
+            CameraShakeHandler.instance.maxIntensity = 0.01f;
 
             LeanTween.delayedCall(gameObject, 8, () =>
             {

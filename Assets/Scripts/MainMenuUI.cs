@@ -6,16 +6,16 @@ public class MainMenuUI : MonoBehaviour
 {
     public void PlayButton()
     {
-        FadeHandler.instance.FadeOut("Game", 1);
+        FadeHandler.instance.FadeOut("Game", 0.5f);
     }
 
     public void CreditsButton()
     {
-        FadeHandler.instance.FadeOut("Credits", 1);
+        FadeHandler.instance.FadeOut("Credits", 0.5f);
     }
 
     public void QuitButton()
     {
-        FadeHandler.instance.FadeOut("Quit", 1);
+        FadeHandler.instance.FadeOut("Quit", 0.5f);
     }
 }

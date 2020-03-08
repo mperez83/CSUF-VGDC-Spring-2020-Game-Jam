@@ -26,12 +26,15 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public WeaponBase weaponBase;
 
+    public GameObject[] randomWeaponPrefabs;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         circleCollider2D = GetComponent<CircleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         weaponBase = GetComponentInChildren<WeaponBase>();
+        GiveWeapon(randomWeaponPrefabs[Random.Range(0, randomWeaponPrefabs.Length)]);
     }
 
     void Update()
@@ -45,8 +48,6 @@ public class Player : MonoBehaviour
         if (grounded && playerInput.y == 1)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-            if (playerInput.x == 1) rotationSpeed = Mathf.Abs(rotationSpeed) * -1;
-            else if (playerInput.x == -1) rotationSpeed = Mathf.Abs(rotationSpeed);
         }
 
         // Speed limit
@@ -54,6 +55,9 @@ public class Player : MonoBehaviour
         else if (rb.velocity.x < -speedLimit) rb.velocity = new Vector2(-speedLimit, rb.velocity.y);
 
         // Rotation
+        if (playerInput.x == 1) rotationSpeed = Mathf.Abs(rotationSpeed) * -1;
+        else if (playerInput.x == -1) rotationSpeed = Mathf.Abs(rotationSpeed);
+
         if (!grounded)
         {
             transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, transform.localEulerAngles.z + (rotationSpeed * Time.deltaTime));
@@ -65,9 +69,18 @@ public class Player : MonoBehaviour
         rb.AddForce(new Vector2(playerInput.x * speed, 0), ForceMode2D.Force);
     }
 
+
+
+    public void GiveWeapon(GameObject newWeapon)
+    {
+        if (weaponBase != null) Destroy(weaponBase.gameObject);
+        GameObject createdWeapon = Instantiate(newWeapon, transform);
+        weaponBase = createdWeapon.GetComponent<WeaponBase>();
+    }
+
     public void Die()
     {
-        CameraShakeHandler.instance.SetIntensity(0.4f);
+        CameraShakeHandler.instance.AddIntensity(0.4f);
 
         GameObject newWeaponDebris = Instantiate(weaponBase.gameObject, weaponBase.transform.position, Quaternion.identity);
         newWeaponDebris.layer = 10;
@@ -92,6 +105,7 @@ public class Player : MonoBehaviour
             {
                 int randomChildIndex = Random.Range(0, spawnPointContainer.childCount);
                 transform.position = spawnPointContainer.GetChild(randomChildIndex).position;
+                GiveWeapon(randomWeaponPrefabs[Random.Range(0, randomWeaponPrefabs.Length)]);
                 gameObject.SetActive(true);
             });
         }
