@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int playerNum;
+    public int lifeCount;
     public float speed;
     public float speedLimit;
     public float jumpPower;
@@ -73,11 +74,22 @@ public class Player : MonoBehaviour
         newRB.AddTorque(Random.Range(10f, 40f));
         gameObject.SetActive(false);
 
-        LeanTween.delayedCall(gameObject, 2, () =>
+        lifeCount--;
+        if (lifeCount == 0)
         {
-            int randomChildIndex = Random.Range(0, spawnPointContainer.childCount);
-            transform.position = spawnPointContainer.GetChild(randomChildIndex).position;
-            gameObject.SetActive(true);
-        });
+            LeanTween.delayedCall(gameObject, 3, () =>
+            {
+                FadeHandler.instance.FadeOut("MainMenu", 1);
+            });
+        }
+        else
+        {
+            LeanTween.delayedCall(gameObject, 2, () =>
+            {
+                int randomChildIndex = Random.Range(0, spawnPointContainer.childCount);
+                transform.position = spawnPointContainer.GetChild(randomChildIndex).position;
+                gameObject.SetActive(true);
+            });
+        }
     }
 }

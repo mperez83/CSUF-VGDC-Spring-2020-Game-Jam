@@ -48,16 +48,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNum: 1
+  lifeCount: 2
   speed: 50
   speedLimit: 6
   jumpPower: 6
-  rotationSpeed: 500
+  rotationSpeed: 600
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 512
+  spawnPointContainer: {fileID: 0}
   rb: {fileID: 0}
-  weaponDebrisPrefab: {fileID: 3026105943572646931, guid: 6e0f6b266e2b21145b3874a5379c1504,
-    type: 3}
 --- !u!212 &8128302239640920181
 SpriteRenderer:
   m_ObjectHideFlags: 0
