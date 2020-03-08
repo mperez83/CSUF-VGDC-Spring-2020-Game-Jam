@@ -13,9 +13,13 @@ public class Blast : MonoBehaviour
     public SpriteRenderer sr;
     [HideInInspector]
     public Player owner;
+    public AudioSource audioSource;
 
     void Start()
     {
+        audioSource.pitch = Random.Range(0.75f, 1.25f);
+        audioSource.Play();
+
         rb.velocity = transform.right * speed;
         LeanTween.scale(gameObject, Vector2.zero, duration).setEase(LeanTweenType.easeInCubic).setDestroyOnComplete(true);
         sr.color = owner.sr.color;

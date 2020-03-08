@@ -7,31 +7,28 @@ public class WeaponBase : MonoBehaviour
     public float soundBlastPower;
     public float degreeOffset;
     public float cooldownTimerLength;
-    float cooldownTimer;
+    protected float cooldownTimer;
     public float screenShake;
     public bool additiveKnockback;
 
     public GameObject blastPrefab;
 
     public Transform blastSpawnPoint;
-    Player player;
-    AudioSource audioSource;
+    protected Player player;
     public int weaponIndex; // BAD LOL
 
     void Start()
     {
         player = GetComponentInParent<Player>();
-        audioSource = GetComponent<AudioSource>();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         cooldownTimer -= Time.deltaTime;
         if (cooldownTimer < 0) cooldownTimer = 0;
 
         if (cooldownTimer == 0 && Input.GetButton("P" + player.playerNum + "_Fire"))
         {
-            audioSource.Play();
             CameraShakeHandler.instance.AddIntensity(screenShake);
             cooldownTimer = cooldownTimerLength;
             

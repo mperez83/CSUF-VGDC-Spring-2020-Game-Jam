@@ -18,6 +18,8 @@ public class MatchHandler : MonoBehaviour
     public Player playerOne;
     public Player playerTwo;
 
+    bool endingGame;
+
     void Start()
     {
         instance = this;
@@ -132,17 +134,24 @@ public class MatchHandler : MonoBehaviour
 
     public void EndGame(int playerThatDidNotWin)
     {
-        GameObject winPlayerObject = (playerThatDidNotWin == 2) ? playerOne.gameObject : playerTwo.gameObject;
-        Player winPlayer = winPlayerObject.GetComponent<Player>();
-        winPlayer.weaponBase.cooldownTimerLength = 0;
-        winText.gameObject.SetActive(true);
-        winText.text = "Player " + winPlayer.playerNum + " wins!!!";
-        winText.color = winPlayer.GetComponent<SpriteRenderer>().color;
-        CameraShakeHandler.instance.maxIntensity = 0.01f;
-
-        LeanTween.delayedCall(gameObject, 5, () =>
+        if (!endingGame)
         {
-            FadeHandler.instance.FadeOut("MainMenu", 2);
-        });
+            endingGame = true;
+
+            LeanTween.delayedCall(gameObject, 3, () =>
+            {
+                GameObject winPlayerObject = (playerThatDidNotWin == 2) ? playerOne.gameObject : playerTwo.gameObject;
+                Player winPlayer = winPlayerObject.GetComponent<Player>();
+                winPlayer.weaponBase.cooldownTimerLength = 0;
+                winText.gameObject.SetActive(true);
+                winText.text = "Player " + winPlayer.playerNum + " wins!!!";
+                winText.color = winPlayer.GetComponent<SpriteRenderer>().color;
+
+                LeanTween.delayedCall(gameObject, 5, () =>
+                {
+                    FadeHandler.instance.FadeOut("MainMenu", 2);
+                });
+            });
+        }
     }
 }

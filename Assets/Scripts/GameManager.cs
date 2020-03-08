@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
 
     public AudioSource musicAudioSource;
 
-    [HideInInspector]
     public bool freeAim;
+    public float globalCameraShakeMultiplier;
 
     float screenTopEdge;
     float screenBottomEdge;

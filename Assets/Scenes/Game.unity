@@ -750,7 +750,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fa7dbfa3820aab45904a76dd0ae0171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxIntensity: 0.4
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

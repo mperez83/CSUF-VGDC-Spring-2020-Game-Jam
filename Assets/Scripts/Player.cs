@@ -43,6 +43,10 @@ public class Player : MonoBehaviour
     public GridLayoutGroup UILifeCounter;
     public GameObject lifeImagePrefab;
 
+    public AudioClip hitSound;
+    public AudioSource audioSource;
+    public GameObject deathSoundPrefab;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -122,6 +126,8 @@ public class Player : MonoBehaviour
     {
         if (!invincible)
         {
+            audioSource.PlayOneShot(hitSound);
+
             health -= damage;
             sr.color = Color.red;
             if (health <= 0)
@@ -130,8 +136,13 @@ public class Player : MonoBehaviour
                 LeanTween.delayedCall(gameObject, 0.25f, () =>
                 {
                     Time.timeScale = 1;
-                    CameraShakeHandler.instance.AddIntensity(0.4f);
+                    CameraShakeHandler.instance.AddIntensity(0.3f);
                     sr.color = playerColor;
+                    GameObject newDeathSound = Instantiate(deathSoundPrefab);
+                    LeanTween.delayedCall(gameObject, 1, () =>
+                    {
+                        Destroy(newDeathSound);
+                    });
                     Die();
                 }).setIgnoreTimeScale(true);
             }
@@ -141,7 +152,7 @@ public class Player : MonoBehaviour
                 LeanTween.delayedCall(gameObject, 0.05f, () =>
                 {
                     Time.timeScale = 1;
-                    CameraShakeHandler.instance.AddIntensity(0.3f);
+                    CameraShakeHandler.instance.AddIntensity(0.1f);
                     sr.color = playerColor;
                 }).setIgnoreTimeScale(true);
             }
@@ -173,10 +184,7 @@ public class Player : MonoBehaviour
             
             if (lifeCount == 0)
             {
-                LeanTween.delayedCall(gameObject, 3, () =>
-                {
-                    MatchHandler.instance.EndGame(playerNum);
-                });
+                MatchHandler.instance.EndGame(playerNum);
             }
             else
             {

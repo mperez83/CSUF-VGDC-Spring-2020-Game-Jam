@@ -8,7 +8,6 @@ public class CameraShakeHandler : MonoBehaviour
 
     Vector2 homePos;
     float intensity;
-    public float maxIntensity;
 
     void Start()
     {
@@ -18,20 +17,18 @@ public class CameraShakeHandler : MonoBehaviour
 
     void Update()
     {
-        intensity -= Time.deltaTime;
-        if (intensity < 0) intensity = 0;
+        intensity *= 0.96f;
+        if (intensity < 0.01f) intensity = 0;
 
         transform.position = new Vector3(homePos.x + Random.Range(-intensity, intensity), homePos.y + Random.Range(-intensity, intensity), transform.position.z);
     }
 
     public void AddIntensity(float amount)
     {
-        intensity += amount;
-        if (intensity > 0.4f) intensity = maxIntensity;
+        intensity += amount * GameManager.instance.globalCameraShakeMultiplier;
     }
     public void SetIntensity(float newIntensity)
     {
-        intensity = newIntensity;
-        if (intensity > 0.4f) intensity = maxIntensity;
+        intensity = newIntensity * GameManager.instance.globalCameraShakeMultiplier;
     }
 }
