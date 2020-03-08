@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -31,6 +32,9 @@ public class Player : MonoBehaviour
 
     public GameObject[] randomWeaponPrefabs;
 
+    public GridLayoutGroup UILifeCounter;
+    public GameObject lifeImagePrefab;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -38,6 +42,13 @@ public class Player : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         weaponBase = GetComponentInChildren<WeaponBase>();
         GiveWeapon(randomWeaponPrefabs[Random.Range(0, randomWeaponPrefabs.Length)]);
+
+        for (int i = 0; i < lifeCount; i++)
+        {
+            Image newLifeImage = Instantiate(lifeImagePrefab, UILifeCounter.transform).GetComponent<Image>();
+            newLifeImage.color = sr.color;
+            if (playerNum == 2) newLifeImage.transform.localScale = new Vector3(-newLifeImage.transform.localScale.x, newLifeImage.transform.localScale.y, newLifeImage.transform.localScale.z);
+        }
     }
 
     void Update()
@@ -104,6 +115,8 @@ public class Player : MonoBehaviour
         gameObject.SetActive(false);
 
         lifeCount--;
+        Destroy(UILifeCounter.transform.GetChild(UILifeCounter.transform.childCount - 1).gameObject);
+
         if (lifeCount == 0)
         {
             LeanTween.delayedCall(gameObject, 3, () =>

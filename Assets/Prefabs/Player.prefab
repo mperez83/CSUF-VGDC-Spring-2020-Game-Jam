@@ -64,6 +64,9 @@ MonoBehaviour:
   - {fileID: 3065849304424978667, guid: dec406b9269660b41afac8ab114c1cbc, type: 3}
   - {fileID: 3065849304424978667, guid: 9aca59c0afe43114c8884c15167c8b42, type: 3}
   - {fileID: 3065849304424978667, guid: 8d2455528d8d12343b8577c9af7b5cb8, type: 3}
+  UILifeCounter: {fileID: 0}
+  lifeImagePrefab: {fileID: 1218918540975855193, guid: 45ad924ca8bd20b4eb3eaa463dc17235,
+    type: 3}
 --- !u!212 &8128302239640920181
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -104,7 +107,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8dd3c078908403141b33a47761333e10, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
