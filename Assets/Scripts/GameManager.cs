@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
 
     public AudioSource musicAudioSource;
 
+    [HideInInspector]
+    public bool freeAim;
+
     float screenTopEdge;
     float screenBottomEdge;
     float screenLeftEdge;
@@ -16,7 +19,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    void Start()
+    void Awake()
     {
         if (instance != null && instance != this)
         {

@@ -48,6 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 8
   duration: 0.25
+  rb: {fileID: 5530741230304170853}
+  circleCollider2D: {fileID: 5759144858786800472}
+  sr: {fileID: 1264830685793990309}
   owner: {fileID: 0}
 --- !u!212 &1264830685793990309
 SpriteRenderer:

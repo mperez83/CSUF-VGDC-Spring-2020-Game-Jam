@@ -6,18 +6,17 @@ public class Blast : MonoBehaviour
 {
     public float speed;
     public float duration;
-    Rigidbody2D rb;
-    CircleCollider2D circleCollider2D;
+    public Rigidbody2D rb;
+    public CircleCollider2D circleCollider2D;
+    public SpriteRenderer sr;
     [HideInInspector]
     public Player owner;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        circleCollider2D = GetComponent<CircleCollider2D>();
         rb.velocity = transform.right * speed;
         LeanTween.scale(gameObject, Vector2.zero, duration).setEase(LeanTweenType.easeInCubic).setDestroyOnComplete(true);
-        GetComponent<SpriteRenderer>().color = owner.GetComponent<SpriteRenderer>().color;
+        sr.color = owner.sr.color;
         Physics2D.IgnoreCollision(owner.circleCollider2D, circleCollider2D);
     }
 

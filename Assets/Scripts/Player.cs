@@ -11,6 +11,10 @@ public class Player : MonoBehaviour
     public float speedLimit;
     public float jumpPower;
     public float rotationSpeed;
+    bool freeAim = true;
+
+    bool invincible;
+    public float iFrameDuration;
 
     public LayerMask groundLayerMask;
 
@@ -25,7 +29,8 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     [HideInInspector]
     public CircleCollider2D circleCollider2D;
-    SpriteRenderer sr;
+    [HideInInspector]
+    public SpriteRenderer sr;
 
     [HideInInspector]
     public WeaponBase weaponBase;
@@ -42,6 +47,7 @@ public class Player : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         weaponBase = GetComponentInChildren<WeaponBase>();
         GiveWeapon(randomWeaponPrefabs[Random.Range(0, randomWeaponPrefabs.Length)]);
+        freeAim = GameManager.instance.freeAim;
 
         for (int i = 0; i < lifeCount; i++)
         {
@@ -53,6 +59,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (invincible) sr.enabled = !sr.enabled;
+
         // Get player input
         playerInput = new Vector2(Input.GetAxisRaw("P" + playerNum + "_Horizontal"), Input.GetAxisRaw("P" + playerNum + "_Vertical"));
 
@@ -68,15 +76,20 @@ public class Player : MonoBehaviour
         else if (rb.velocity.x < -speedLimit) rb.velocity = new Vector2(-speedLimit, rb.velocity.y);
 
         // Rotation
-        if (playerInput.x == 1) rotationSpeed = Mathf.Abs(rotationSpeed) * -1;
-        else if (playerInput.x == -1) rotationSpeed = Mathf.Abs(rotationSpeed);
-        /*if (!grounded)
+        if (freeAim)
         {
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, transform.localEulerAngles.z + (rotationSpeed * Time.deltaTime));
-        }*/
-        if (playerInput != Vector2.zero)
+            if (playerInput != Vector2.zero)
+            {
+                playerAngle = -(TrigUtilities.VectorToDegrees(playerInput) - 90);
+            }
+        }
+        else
         {
-            playerAngle = -(TrigUtilities.VectorToDegrees(playerInput) - 90);
+            if (!grounded)
+            {
+                playerAngle -= rotationSpeed * Time.deltaTime;
+                if (playerAngle < 0) playerAngle += 360;
+            }
         }
 
         // Off-screen death
@@ -103,36 +116,60 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        CameraShakeHandler.instance.AddIntensity(0.4f);
-
-        GameObject newWeaponDebris = Instantiate(weaponBase.gameObject, weaponBase.transform.position, Quaternion.identity);
-        newWeaponDebris.layer = 10;
-        Destroy(newWeaponDebris.GetComponent<WeaponBase>());
-        BoxCollider2D newBC = newWeaponDebris.AddComponent<BoxCollider2D>();
-        Rigidbody2D newRB = newWeaponDebris.AddComponent<Rigidbody2D>();
-        newRB.AddForce(new Vector2(Random.Range(-10f, 10f), Random.Range(5f, 10f)), ForceMode2D.Impulse);
-        newRB.AddTorque(Random.Range(10f, 40f));
-        gameObject.SetActive(false);
-
-        lifeCount--;
-        Destroy(UILifeCounter.transform.GetChild(UILifeCounter.transform.childCount - 1).gameObject);
-
-        if (lifeCount == 0)
+        if (gameObject.activeSelf && !invincible)
         {
-            LeanTween.delayedCall(gameObject, 3, () =>
+            CameraShakeHandler.instance.AddIntensity(0.4f);
+
+            GameObject newWeaponDebris = Instantiate(weaponBase.gameObject, weaponBase.transform.position, Quaternion.identity);
+            newWeaponDebris.layer = 10;
+            Destroy(newWeaponDebris.GetComponent<WeaponBase>());
+            BoxCollider2D newBC = newWeaponDebris.AddComponent<BoxCollider2D>();
+            Rigidbody2D newRB = newWeaponDebris.AddComponent<Rigidbody2D>();
+            newRB.AddForce(new Vector2(Random.Range(-10f, 10f), Random.Range(5f, 10f)), ForceMode2D.Impulse);
+            newRB.AddTorque(Random.Range(10f, 40f));
+            newWeaponDebris.AddComponent<DestroyWhenOffCamera>();
+
+            gameObject.SetActive(false);
+
+            lifeCount--;
+            if (playerNum == 1)
             {
-                MatchHandler.instance.EndGame();
-            });
-        }
-        else
-        {
-            LeanTween.delayedCall(gameObject, 2, () =>
+                LeanTween.scale(UILifeCounter.transform.GetChild(UILifeCounter.transform.childCount - 1).gameObject, Vector3.zero, 1f)
+                .setEase(LeanTweenType.easeOutExpo)
+                .setDestroyOnComplete(true);
+            }
+            else
             {
-                int randomChildIndex = Random.Range(0, spawnPointContainer.childCount);
-                transform.position = spawnPointContainer.GetChild(randomChildIndex).position;
-                GiveWeapon(randomWeaponPrefabs[Random.Range(0, randomWeaponPrefabs.Length)]);
-                gameObject.SetActive(true);
-            });
+                LeanTween.scale(UILifeCounter.transform.GetChild(0).gameObject, Vector3.zero, 1f)
+                .setEase(LeanTweenType.easeOutExpo)
+                .setDestroyOnComplete(true);
+            }
+            
+            if (lifeCount == 0)
+            {
+                LeanTween.delayedCall(gameObject, 3, () =>
+                {
+                    MatchHandler.instance.EndGame(playerNum);
+                });
+            }
+            else
+            {
+                LeanTween.delayedCall(gameObject, 2, () =>
+                {
+                    int randomChildIndex = Random.Range(0, spawnPointContainer.childCount);
+                    transform.position = spawnPointContainer.GetChild(randomChildIndex).position;
+                    GiveWeapon(randomWeaponPrefabs[Random.Range(0, randomWeaponPrefabs.Length)]);
+
+                    invincible = true;
+                    LeanTween.delayedCall(gameObject, iFrameDuration, () =>
+                    {
+                        invincible = false;
+                        sr.enabled = true;
+                    });
+
+                    gameObject.SetActive(true);
+                });
+            }
         }
     }
 }

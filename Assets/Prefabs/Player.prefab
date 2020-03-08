@@ -47,17 +47,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNum: 1
-  lifeCount: 3
+  lifeCount: 5
   speed: 50
   speedLimit: 6
   jumpPower: 8
   rotationSpeed: 600
+  iFrameDuration: 2
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 512
   spawnPointContainer: {fileID: 0}
   rb: {fileID: 0}
   circleCollider2D: {fileID: 0}
+  sr: {fileID: 0}
   weaponBase: {fileID: 0}
   randomWeaponPrefabs:
   - {fileID: 3065849304424978667, guid: 3f2d84b1068e21042a67c6a063002d32, type: 3}
