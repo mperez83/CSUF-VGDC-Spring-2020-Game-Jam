@@ -6,6 +6,8 @@ public class Blast : MonoBehaviour
 {
     public float speed;
     public float duration;
+    public int damage;
+    bool canDamage = true;
     public Rigidbody2D rb;
     public CircleCollider2D circleCollider2D;
     public SpriteRenderer sr;
@@ -27,11 +29,15 @@ public class Blast : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (canDamage)
         {
-            if (other.gameObject != owner.gameObject)
+            if (other.gameObject.CompareTag("Player"))
             {
-                other.gameObject.GetComponent<Player>().Die();
+                if (other.gameObject != owner.gameObject)
+                {
+                    canDamage = false;
+                    other.gameObject.GetComponent<Player>().TakeDamage(damage);
+                }
             }
         }
     }

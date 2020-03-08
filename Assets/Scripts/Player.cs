@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public int playerNum;
+    public Color playerColor;
+    public int maxHealth;
+    int health;
     public int lifeCount;
     public float speed;
     public float speedLimit;
@@ -48,6 +51,7 @@ public class Player : MonoBehaviour
         weaponBase = GetComponentInChildren<WeaponBase>();
         GiveWeapon(randomWeaponPrefabs[Random.Range(0, randomWeaponPrefabs.Length)]);
         freeAim = GameManager.instance.freeAim;
+        health = maxHealth;
 
         for (int i = 0; i < lifeCount; i++)
         {
@@ -114,12 +118,40 @@ public class Player : MonoBehaviour
         weaponBase = createdWeapon.GetComponent<WeaponBase>();
     }
 
+    public void TakeDamage(int damage)
+    {
+        if (!invincible)
+        {
+            health -= damage;
+            sr.color = Color.red;
+            if (health <= 0)
+            {
+                Time.timeScale = 0;
+                LeanTween.delayedCall(gameObject, 0.25f, () =>
+                {
+                    Time.timeScale = 1;
+                    CameraShakeHandler.instance.AddIntensity(0.4f);
+                    sr.color = playerColor;
+                    Die();
+                }).setIgnoreTimeScale(true);
+            }
+            else
+            {
+                Time.timeScale = 0;
+                LeanTween.delayedCall(gameObject, 0.05f, () =>
+                {
+                    Time.timeScale = 1;
+                    CameraShakeHandler.instance.AddIntensity(0.3f);
+                    sr.color = playerColor;
+                }).setIgnoreTimeScale(true);
+            }
+        }
+    }
+
     public void Die()
     {
-        if (gameObject.activeSelf && !invincible)
+        if (gameObject.activeSelf)
         {
-            CameraShakeHandler.instance.AddIntensity(0.4f);
-
             GameObject newWeaponDebris = Instantiate(weaponBase.gameObject, weaponBase.transform.position, Quaternion.identity);
             newWeaponDebris.layer = 10;
             Destroy(newWeaponDebris.GetComponent<WeaponBase>());
@@ -166,6 +198,8 @@ public class Player : MonoBehaviour
                         invincible = false;
                         sr.enabled = true;
                     });
+
+                    health = maxHealth;
 
                     gameObject.SetActive(true);
                 });

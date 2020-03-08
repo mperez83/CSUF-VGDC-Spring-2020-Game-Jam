@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNum: 1
+  playerColor: {r: 1, g: 1, b: 1, a: 1}
+  maxHealth: 3
   lifeCount: 5
   speed: 50
   speedLimit: 6
