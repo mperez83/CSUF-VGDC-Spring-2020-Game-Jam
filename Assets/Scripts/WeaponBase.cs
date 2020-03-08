@@ -12,10 +12,12 @@ public class WeaponBase : MonoBehaviour
 
     public Transform blastSpawnPoint;
     Player player;
+    AudioSource audioSource;
 
     void Start()
     {
         player = GetComponentInParent<Player>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -23,8 +25,10 @@ public class WeaponBase : MonoBehaviour
         cooldownTimer -= Time.deltaTime;
         if (cooldownTimer < 0) cooldownTimer = 0;
 
-        if (cooldownTimer == 0 && Input.GetButtonDown("P" + player.playerNum + "_Fire"))
+        if (cooldownTimer == 0 && Input.GetButton("P" + player.playerNum + "_Fire"))
         {
+            audioSource.Play();
+            CameraShakeHandler.instance.SetIntensity(0.1f);
             cooldownTimer = cooldownTimerLength;
             player.rb.velocity = -player.transform.right * soundBlastPower;
             GameObject newBlast = Instantiate(blastPrefab, new Vector2(blastSpawnPoint.position.x, blastSpawnPoint.position.y), Quaternion.identity);

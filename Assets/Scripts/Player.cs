@@ -22,7 +22,9 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     CircleCollider2D circleCollider2D;
     SpriteRenderer sr;
-    WeaponBase weaponBase;
+
+    [HideInInspector]
+    public WeaponBase weaponBase;
 
     void Start()
     {
@@ -65,6 +67,8 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
+        CameraShakeHandler.instance.SetIntensity(0.4f);
+
         GameObject newWeaponDebris = Instantiate(weaponBase.gameObject, weaponBase.transform.position, Quaternion.identity);
         newWeaponDebris.layer = 10;
         Destroy(newWeaponDebris.GetComponent<WeaponBase>());
@@ -79,7 +83,7 @@ public class Player : MonoBehaviour
         {
             LeanTween.delayedCall(gameObject, 3, () =>
             {
-                FadeHandler.instance.FadeOut("MainMenu", 1);
+                MatchHandler.instance.EndGame();
             });
         }
         else

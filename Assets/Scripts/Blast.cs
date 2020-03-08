@@ -5,31 +5,25 @@ using UnityEngine;
 public class Blast : MonoBehaviour
 {
     public float speed;
-    public float activeHitboxDuration;
+    Rigidbody2D rb;
 
     void Start()
     {
         LeanTween.scale(gameObject, Vector2.zero, 1).setEase(LeanTweenType.easeInCubic).setDestroyOnComplete(true);
-        LeanTween.value(gameObject, speed, 0, 1).setEase(LeanTweenType.easeOutQuad).setOnUpdate((float value) =>
-        {
-            //speed = value;
-        });
-        LeanTween.delayedCall(gameObject, activeHitboxDuration, () =>
-        {
-            Destroy(GetComponent<BoxCollider2D>());
-        });
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = transform.right * speed;
     }
 
     void Update()
     {
-        transform.Translate(Vector2.right * speed * Time.deltaTime, Space.Self);
+        
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            other.GetComponent<Player>().Die();
+            other.gameObject.GetComponent<Player>().Die();
         }
     }
 }
