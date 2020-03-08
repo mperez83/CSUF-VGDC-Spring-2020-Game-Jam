@@ -16,6 +16,7 @@ public class WeaponBase : MonoBehaviour
     public Transform blastSpawnPoint;
     Player player;
     AudioSource audioSource;
+    public int weaponIndex; // BAD LOL
 
     void Start()
     {

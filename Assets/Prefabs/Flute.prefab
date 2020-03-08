@@ -84,6 +84,7 @@ MonoBehaviour:
   blastPrefab: {fileID: 1264830685793990311, guid: 036ceac2060d10448960e0fd59b73802,
     type: 3}
   blastSpawnPoint: {fileID: 7457636032007040517}
+  weaponIndex: 1
 --- !u!212 &3065849304424978665
 SpriteRenderer:
   m_ObjectHideFlags: 0

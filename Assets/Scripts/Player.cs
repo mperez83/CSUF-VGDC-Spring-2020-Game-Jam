@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public WeaponBase weaponBase;
 
-    public GameObject[] randomWeaponPrefabs;
+    public GameObject[] weaponPrefabs;
 
     public GridLayoutGroup UILifeCounter;
     public GameObject lifeImagePrefab;
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
         circleCollider2D = GetComponent<CircleCollider2D>();
         sr = GetComponent<SpriteRenderer>();
         weaponBase = GetComponentInChildren<WeaponBase>();
-        GiveWeapon(randomWeaponPrefabs[Random.Range(0, randomWeaponPrefabs.Length)]);
+        GiveWeapon(Random.Range(0, weaponPrefabs.Length));
         freeAim = GameManager.instance.freeAim;
         health = maxHealth;
 
@@ -111,10 +111,10 @@ public class Player : MonoBehaviour
 
 
 
-    public void GiveWeapon(GameObject newWeapon)
+    public void GiveWeapon(int weaponIndex)
     {
         if (weaponBase != null) Destroy(weaponBase.gameObject);
-        GameObject createdWeapon = Instantiate(newWeapon, transform);
+        GameObject createdWeapon = Instantiate(weaponPrefabs[weaponIndex], transform);
         weaponBase = createdWeapon.GetComponent<WeaponBase>();
     }
 
@@ -153,13 +153,7 @@ public class Player : MonoBehaviour
         if (gameObject.activeSelf)
         {
             GameObject newWeaponDebris = Instantiate(weaponBase.gameObject, weaponBase.transform.position, Quaternion.identity);
-            newWeaponDebris.layer = 10;
-            Destroy(newWeaponDebris.GetComponent<WeaponBase>());
-            BoxCollider2D newBC = newWeaponDebris.AddComponent<BoxCollider2D>();
-            Rigidbody2D newRB = newWeaponDebris.AddComponent<Rigidbody2D>();
-            newRB.AddForce(new Vector2(Random.Range(-10f, 10f), Random.Range(5f, 10f)), ForceMode2D.Impulse);
-            newRB.AddTorque(Random.Range(10f, 40f));
-            newWeaponDebris.AddComponent<DestroyWhenOffCamera>();
+            newWeaponDebris.AddComponent<WeaponPickup>();
 
             gameObject.SetActive(false);
 
@@ -190,7 +184,7 @@ public class Player : MonoBehaviour
                 {
                     int randomChildIndex = Random.Range(0, spawnPointContainer.childCount);
                     transform.position = spawnPointContainer.GetChild(randomChildIndex).position;
-                    GiveWeapon(randomWeaponPrefabs[Random.Range(0, randomWeaponPrefabs.Length)]);
+                    GiveWeapon(Random.Range(0, weaponPrefabs.Length));
 
                     invincible = true;
                     LeanTween.delayedCall(gameObject, iFrameDuration, () =>

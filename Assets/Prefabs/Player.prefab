@@ -63,7 +63,7 @@ MonoBehaviour:
   circleCollider2D: {fileID: 0}
   sr: {fileID: 0}
   weaponBase: {fileID: 0}
-  randomWeaponPrefabs:
+  weaponPrefabs:
   - {fileID: 3065849304424978667, guid: 3f2d84b1068e21042a67c6a063002d32, type: 3}
   - {fileID: 3065849304424978667, guid: dec406b9269660b41afac8ab114c1cbc, type: 3}
   - {fileID: 3065849304424978667, guid: 9aca59c0afe43114c8884c15167c8b42, type: 3}
