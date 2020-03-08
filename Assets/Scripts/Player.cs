@@ -20,7 +20,8 @@ public class Player : MonoBehaviour
 
     [HideInInspector]
     public Rigidbody2D rb;
-    CircleCollider2D circleCollider2D;
+    [HideInInspector]
+    public CircleCollider2D circleCollider2D;
     SpriteRenderer sr;
 
     [HideInInspector]
