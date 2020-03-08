@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     Vector2 playerInput;
     bool grounded;
     float playerAngle;
+    float vel;
 
     public Transform spawnPointContainer;
 
@@ -64,7 +65,7 @@ public class Player : MonoBehaviour
         }*/
         if (playerInput != Vector2.zero)
         {
-            playerAngle = TrigUtilities.VectorToDegrees(playerInput) - 90;
+            playerAngle = -(TrigUtilities.VectorToDegrees(playerInput) - 90);
         }
 
         // Off-screen death
@@ -76,7 +77,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.rotation = -playerAngle;
+        rb.rotation = Mathf.SmoothDampAngle(rb.rotation, playerAngle, ref vel, 0.05f);
         rb.AddForce(new Vector2(playerInput.x * speed, 0), ForceMode2D.Force);
     }
 
