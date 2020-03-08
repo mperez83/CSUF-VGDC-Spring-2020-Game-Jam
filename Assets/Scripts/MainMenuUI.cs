@@ -16,6 +16,6 @@ public class MainMenuUI : MonoBehaviour
 
     public void QuitButton()
     {
-        FadeHandler.instance.FadeOut("Quit", 0.5f);
+        Application.Quit();
     }
 }

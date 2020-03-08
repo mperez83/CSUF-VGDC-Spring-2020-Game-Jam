@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
     Vector2 playerInput;
     bool grounded;
+    float playerAngle;
 
     public Transform spawnPointContainer;
 
@@ -44,8 +45,7 @@ public class Player : MonoBehaviour
         playerInput = new Vector2(Input.GetAxisRaw("P" + playerNum + "_Horizontal"), Input.GetAxisRaw("P" + playerNum + "_Vertical"));
 
         // Jump control
-        grounded = Physics2D.OverlapCircle(transform.position, circleCollider2D.radius, groundLayerMask);
-
+        grounded = Physics2D.OverlapCircle(transform.position, circleCollider2D.radius * 1.5f, groundLayerMask);
         if (grounded && playerInput.y == 1)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
@@ -58,15 +58,25 @@ public class Player : MonoBehaviour
         // Rotation
         if (playerInput.x == 1) rotationSpeed = Mathf.Abs(rotationSpeed) * -1;
         else if (playerInput.x == -1) rotationSpeed = Mathf.Abs(rotationSpeed);
-
-        if (!grounded)
+        /*if (!grounded)
         {
             transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, transform.localEulerAngles.z + (rotationSpeed * Time.deltaTime));
+        }*/
+        if (playerInput != Vector2.zero)
+        {
+            playerAngle = TrigUtilities.VectorToDegrees(playerInput) - 90;
+        }
+
+        // Off-screen death
+        if (GameManager.instance.IsTransformOffCamera(transform))
+        {
+            Die();
         }
     }
 
     void FixedUpdate()
     {
+        rb.rotation = -playerAngle;
         rb.AddForce(new Vector2(playerInput.x * speed, 0), ForceMode2D.Force);
     }
 

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1264830685793990309}
   - component: {fileID: 5759144858786800472}
   - component: {fileID: 5530741230304170853}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Just Yelling Blast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,8 +85,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1617297261
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3d5be0d0fd7ee954b9c9eadcdde2ec71, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
