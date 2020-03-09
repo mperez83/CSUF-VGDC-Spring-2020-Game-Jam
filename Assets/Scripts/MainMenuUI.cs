@@ -16,7 +16,7 @@ public class MainMenuUI : MonoBehaviour
     {
         GameManager.instance.selectAudioSource.Play();
         GameManager.instance.freeAim = freeAimToggle.isOn;
-        FadeHandler.instance.FadeOut("Map_1", 0.5f);
+        FadeHandler.instance.FadeOut("Map_2", 0.5f);
     }
 
     public void CreditsButton()
