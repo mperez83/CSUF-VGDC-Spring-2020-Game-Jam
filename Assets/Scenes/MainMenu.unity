@@ -287,9 +287,11 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Battlefield
       m_Image: {fileID: 0}
-    - m_Text: Map 2
+    - m_Text: The Ruins
       m_Image: {fileID: 0}
-    - m_Text: Map 3
+    - m_Text: The Grove
+      m_Image: {fileID: 0}
+    - m_Text: Bloom
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1872,6 +1874,7 @@ MonoBehaviour:
   - Map_1
   - Map_2
   - Map_3
+  - Map_4
 --- !u!1 &918641057
 GameObject:
   m_ObjectHideFlags: 0

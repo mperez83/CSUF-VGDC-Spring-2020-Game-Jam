@@ -18,11 +18,17 @@ public class MatchHandler : MonoBehaviour
     public Player playerOne;
     public Player playerTwo;
 
+    public GameObject powerupPotionPrefab;
+    public Transform powerupSpawnPointContainer;
+    float powerupSpawnTimer;
+
     bool endingGame;
 
     void Start()
     {
         instance = this;
+
+        powerupSpawnTimer = Random.Range(30f, 60f);
 
         Color emptyColor = new Color(1, 1, 1, 0);
 
@@ -137,6 +143,14 @@ public class MatchHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             FadeHandler.instance.FadeOut("MainMenu", 0.25f);
+        }
+
+        powerupSpawnTimer -= Time.deltaTime;
+        if (powerupSpawnTimer <= 0)
+        {
+            powerupSpawnTimer = Random.Range(30f, 60f);
+            int randomChildIndex = Random.Range(0, powerupSpawnPointContainer.childCount);
+            Instantiate(powerupPotionPrefab, powerupSpawnPointContainer.GetChild(randomChildIndex).position, Quaternion.identity);
         }
     }
 

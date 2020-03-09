@@ -17,7 +17,7 @@ public class CameraShakeHandler : MonoBehaviour
 
     void Update()
     {
-        intensity *= 0.96f;
+        intensity *= 0.95f;
         if (intensity < 0.01f) intensity = 0;
 
         transform.position = new Vector3(homePos.x + Random.Range(-intensity, intensity), homePos.y + Random.Range(-intensity, intensity), transform.position.z);

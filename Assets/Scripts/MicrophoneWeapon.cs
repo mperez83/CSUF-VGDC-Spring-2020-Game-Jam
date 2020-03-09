@@ -22,7 +22,7 @@ public class MicrophoneWeapon : WeaponBase
         if (cooldownTimer == 0 && Input.GetButton("P" + player.playerNum + "_Fire"))
         {
             if (!chargeCanvas.activeSelf) chargeCanvas.SetActive(true);
-            chargeAmount += Time.deltaTime;
+            chargeAmount += (Time.deltaTime / 2f);
             if (chargeAmount > 1) chargeAmount = 1;
             chargeBar.fillAmount = chargeAmount;
         }

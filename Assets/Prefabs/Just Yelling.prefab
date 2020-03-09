@@ -39,8 +39,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3065849304424978664}
+  - component: {fileID: 2885829160254036545}
   - component: {fileID: 6544228557595337475}
-  - component: {fileID: 3065849304424978646}
   m_Layer: 0
   m_Name: Just Yelling
   m_TagString: Untagged
@@ -63,6 +63,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2885829160254036545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065849304424978667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ba271ff37e78f45a7a67a0aad1f169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundBlastPower: 15
+  degreeOffset: 0
+  cooldownTimerLength: 2
+  screenShake: 0.25
+  additiveKnockback: 0
+  blastPrefab: {fileID: 1264830685793990311, guid: 5a562a7ab0c92ff44911db4a8a54a223,
+    type: 3}
+  blastSpawnPoint: {fileID: 7457636032007040517}
+  weaponIndex: 3
+  michaelYells:
+  - {fileID: 8300000, guid: 8dc94430cc9aca042bf0bdcccc42010f, type: 3}
+  - {fileID: 8300000, guid: 8dc94430cc9aca042bf0bdcccc42010f, type: 3}
+  - {fileID: 8300000, guid: 8dc94430cc9aca042bf0bdcccc42010f, type: 3}
+  taraYells:
+  - {fileID: 8300000, guid: 829226860faa57f4d8eb821faa943eb1, type: 3}
+  - {fileID: 8300000, guid: 829226860faa57f4d8eb821faa943eb1, type: 3}
+  - {fileID: 8300000, guid: 829226860faa57f4d8eb821faa943eb1, type: 3}
+  nickYells:
+  - {fileID: 8300000, guid: 97af1b13c3ba5094792c790cbbe5aa55, type: 3}
+  - {fileID: 8300000, guid: 97af1b13c3ba5094792c790cbbe5aa55, type: 3}
+  - {fileID: 8300000, guid: 97af1b13c3ba5094792c790cbbe5aa55, type: 3}
+  emmersonYells:
+  - {fileID: 8300000, guid: b06952d0a50279544b9983d82313de49, type: 3}
+  - {fileID: 8300000, guid: b06952d0a50279544b9983d82313de49, type: 3}
+  - {fileID: 8300000, guid: b06952d0a50279544b9983d82313de49, type: 3}
 --- !u!212 &6544228557595337475
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -113,24 +150,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3065849304424978646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3065849304424978667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4612d3536fcc4e4c9a610d470c8d81d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soundBlastPower: 0
-  degreeOffset: 360
-  cooldownTimerLength: 0.01
-  screenShake: 0
-  additiveKnockback: 1
-  blastPrefab: {fileID: 1264830685793990311, guid: 5a562a7ab0c92ff44911db4a8a54a223,
-    type: 3}
-  blastSpawnPoint: {fileID: 7457636032007040517}
-  weaponIndex: 3
