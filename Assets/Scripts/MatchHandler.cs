@@ -140,6 +140,8 @@ public class MatchHandler : MonoBehaviour
 
             LeanTween.delayedCall(gameObject, 3, () =>
             {
+                GetComponent<AudioSource>().Play();
+
                 GameObject winPlayerObject = (playerThatDidNotWin == 2) ? playerOne.gameObject : playerTwo.gameObject;
                 Player winPlayer = winPlayerObject.GetComponent<Player>();
                 winPlayer.weaponBase.cooldownTimerLength = 0;

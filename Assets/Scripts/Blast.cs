@@ -14,6 +14,7 @@ public class Blast : MonoBehaviour
     [HideInInspector]
     public Player owner;
     public AudioSource audioSource;
+    public Sprite pizzaTimeSprite;
 
     void Start()
     {
@@ -24,11 +25,13 @@ public class Blast : MonoBehaviour
         LeanTween.scale(gameObject, Vector2.zero, duration).setEase(LeanTweenType.easeInCubic).setDestroyOnComplete(true);
         sr.color = owner.sr.color;
         Physics2D.IgnoreCollision(owner.circleCollider2D, circleCollider2D);
+
+        if (GameManager.instance.pizzaTime) sr.sprite = pizzaTimeSprite;
     }
 
     void Update()
     {
-        
+        rb.rotation = -TrigUtilities.VectorToDegrees(rb.velocity);
     }
 
     void OnCollisionEnter2D(Collision2D other)

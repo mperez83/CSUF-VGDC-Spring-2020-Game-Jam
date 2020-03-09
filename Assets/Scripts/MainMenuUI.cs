@@ -14,12 +14,14 @@ public class MainMenuUI : MonoBehaviour
 
     public void PlayButton()
     {
+        GameManager.instance.selectAudioSource.Play();
         GameManager.instance.freeAim = freeAimToggle.isOn;
-        FadeHandler.instance.FadeOut("Game", 0.5f);
+        FadeHandler.instance.FadeOut("Map_1", 0.5f);
     }
 
     public void CreditsButton()
     {
+        GameManager.instance.selectAudioSource.Play();
         FadeHandler.instance.FadeOut("Credits", 0.5f);
     }
 

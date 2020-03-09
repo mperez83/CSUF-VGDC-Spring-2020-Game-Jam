@@ -136,13 +136,7 @@ public class Player : MonoBehaviour
                 LeanTween.delayedCall(gameObject, 0.25f, () =>
                 {
                     Time.timeScale = 1;
-                    CameraShakeHandler.instance.AddIntensity(0.3f);
                     sr.color = playerColor;
-                    GameObject newDeathSound = Instantiate(deathSoundPrefab);
-                    LeanTween.delayedCall(gameObject, 1, () =>
-                    {
-                        Destroy(newDeathSound);
-                    });
                     Die();
                 }).setIgnoreTimeScale(true);
             }
@@ -165,6 +159,9 @@ public class Player : MonoBehaviour
         {
             GameObject newWeaponDebris = Instantiate(weaponBase.gameObject, weaponBase.transform.position, Quaternion.identity);
             newWeaponDebris.AddComponent<WeaponPickup>();
+
+            CameraShakeHandler.instance.AddIntensity(0.3f);
+            Instantiate(deathSoundPrefab);
 
             gameObject.SetActive(false);
 

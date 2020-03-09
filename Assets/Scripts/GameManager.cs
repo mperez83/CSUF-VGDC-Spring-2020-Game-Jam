@@ -8,9 +8,11 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public AudioSource musicAudioSource;
+    public AudioSource selectAudioSource;
 
     public bool freeAim;
     public float globalCameraShakeMultiplier;
+    public bool pizzaTime;
 
     float screenTopEdge;
     float screenBottomEdge;
