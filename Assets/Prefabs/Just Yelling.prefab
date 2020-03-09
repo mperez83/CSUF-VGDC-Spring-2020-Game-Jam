@@ -85,21 +85,34 @@ MonoBehaviour:
   blastSpawnPoint: {fileID: 7457636032007040517}
   weaponIndex: 3
   michaelYells:
-  - {fileID: 8300000, guid: 8dc94430cc9aca042bf0bdcccc42010f, type: 3}
-  - {fileID: 8300000, guid: 8dc94430cc9aca042bf0bdcccc42010f, type: 3}
-  - {fileID: 8300000, guid: 8dc94430cc9aca042bf0bdcccc42010f, type: 3}
+  - {fileID: 8300000, guid: f726b23a72182f146aefd538e7afbf85, type: 3}
+  - {fileID: 8300000, guid: 6ce50fb982f0772498aaeeb3a579123a, type: 3}
+  - {fileID: 8300000, guid: 66fb02287bf13ce4f8a8cad9c3ce90a3, type: 3}
+  - {fileID: 8300000, guid: a5b889adb8188044a8df064b7f85f276, type: 3}
+  - {fileID: 8300000, guid: b5f565d9aac8fd14ba5e8b110f1a7bbc, type: 3}
   taraYells:
-  - {fileID: 8300000, guid: 829226860faa57f4d8eb821faa943eb1, type: 3}
-  - {fileID: 8300000, guid: 829226860faa57f4d8eb821faa943eb1, type: 3}
-  - {fileID: 8300000, guid: 829226860faa57f4d8eb821faa943eb1, type: 3}
+  - {fileID: 8300000, guid: 848747a37c7ef344c8301dee2ad3e8b6, type: 3}
+  - {fileID: 8300000, guid: b0deac2d1d068f6489de772ec2c3e1ab, type: 3}
+  - {fileID: 8300000, guid: 611a9c8a8882ec74a9f019fda03d9e7b, type: 3}
+  - {fileID: 8300000, guid: d3a4a22b6002c7d43b4fc4d331aeac8a, type: 3}
+  - {fileID: 8300000, guid: 0bb49938751ec134cb056354ca9f4958, type: 3}
+  - {fileID: 8300000, guid: ffb20bdd340a1434f849855e95495540, type: 3}
+  - {fileID: 8300000, guid: a95949617ac716c44b1fe15f0dfaecba, type: 3}
+  - {fileID: 8300000, guid: 7d16ab8dfbff0ea439d94bb05e193967, type: 3}
   nickYells:
-  - {fileID: 8300000, guid: 97af1b13c3ba5094792c790cbbe5aa55, type: 3}
-  - {fileID: 8300000, guid: 97af1b13c3ba5094792c790cbbe5aa55, type: 3}
-  - {fileID: 8300000, guid: 97af1b13c3ba5094792c790cbbe5aa55, type: 3}
+  - {fileID: 8300000, guid: 33d8fd7209ba02645b0b0cefbb5703b7, type: 3}
+  - {fileID: 8300000, guid: 7808bd2447ddb444f80c5a561a53d1db, type: 3}
+  - {fileID: 8300000, guid: 2b47f3273a523424185eaaac330908fc, type: 3}
+  - {fileID: 8300000, guid: 0ef58b67d43457643b7fbf5890730d04, type: 3}
+  - {fileID: 8300000, guid: 84f10d54929d09f4b9f7cfc3cf72992e, type: 3}
+  - {fileID: 8300000, guid: cc9d808b9adeeb648b483b1662b20335, type: 3}
   emmersonYells:
-  - {fileID: 8300000, guid: b06952d0a50279544b9983d82313de49, type: 3}
-  - {fileID: 8300000, guid: b06952d0a50279544b9983d82313de49, type: 3}
-  - {fileID: 8300000, guid: b06952d0a50279544b9983d82313de49, type: 3}
+  - {fileID: 8300000, guid: e8c42289627d6fd409aad8de48069dde, type: 3}
+  - {fileID: 8300000, guid: e4f4cd556f5453c499dab97e2bcf92b8, type: 3}
+  - {fileID: 8300000, guid: 51e7f50e526e9fd458fd1d8fac326837, type: 3}
+  - {fileID: 8300000, guid: d342393e625c9a34db210b4c404abbda, type: 3}
+  - {fileID: 8300000, guid: 593ec80f6f04daa48be72e8001777ef8, type: 3}
+  - {fileID: 8300000, guid: 2e362c713b69fc341ac6d661723aa410, type: 3}
 --- !u!212 &6544228557595337475
 SpriteRenderer:
   m_ObjectHideFlags: 0

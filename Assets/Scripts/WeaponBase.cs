@@ -7,7 +7,8 @@ public class WeaponBase : MonoBehaviour
     public float soundBlastPower;
     public float degreeOffset;
     public float cooldownTimerLength;
-    protected float cooldownTimer;
+    [HideInInspector]
+    public float cooldownTimer;
     public float screenShake;
     public bool additiveKnockback;
 

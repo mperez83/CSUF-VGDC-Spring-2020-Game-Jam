@@ -28,7 +28,7 @@ public class MatchHandler : MonoBehaviour
     {
         instance = this;
 
-        powerupSpawnTimer = Random.Range(30f, 60f);
+        powerupSpawnTimer = Random.Range(15f, 30f);
 
         Color emptyColor = new Color(1, 1, 1, 0);
 
@@ -148,7 +148,7 @@ public class MatchHandler : MonoBehaviour
         powerupSpawnTimer -= Time.deltaTime;
         if (powerupSpawnTimer <= 0)
         {
-            powerupSpawnTimer = Random.Range(30f, 60f);
+            powerupSpawnTimer = Random.Range(15f, 30f);
             int randomChildIndex = Random.Range(0, powerupSpawnPointContainer.childCount);
             Instantiate(powerupPotionPrefab, powerupSpawnPointContainer.GetChild(randomChildIndex).position, Quaternion.identity);
         }

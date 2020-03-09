@@ -16,6 +16,7 @@ public class CreditsUI : MonoBehaviour
     {
         GameManager.instance.pizzaTime = true;
         GameManager.instance.musicAudioSource.clip = pizzaTheme;
+        GameManager.instance.musicAudioSource.volume = 0.5f;
         GameManager.instance.musicAudioSource.Play();
     }
 }

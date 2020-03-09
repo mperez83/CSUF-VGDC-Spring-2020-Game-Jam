@@ -44,8 +44,9 @@ public class ApeshitPotion : MonoBehaviour
             WeaponBase weaponToMessUp = other.GetComponent<Player>().weaponBase;
             float preApeshitCooldownLength = weaponToMessUp.cooldownTimerLength;
             weaponToMessUp.cooldownTimerLength = 0;
+            weaponToMessUp.cooldownTimer = 0;
 
-            LeanTween.delayedCall(gameObject, 1, () =>
+            LeanTween.delayedCall(gameObject, 2, () =>
             {
                 if (other != null)
                 {

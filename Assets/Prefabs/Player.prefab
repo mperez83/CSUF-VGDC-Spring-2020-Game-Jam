@@ -53,7 +53,7 @@ MonoBehaviour:
   lifeCount: 5
   speed: 50
   speedLimit: 6
-  jumpPower: 8
+  jumpPower: 9
   rotationSpeed: 600
   iFrameDuration: 2
   groundLayerMask:

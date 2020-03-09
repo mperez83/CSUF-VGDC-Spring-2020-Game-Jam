@@ -8,11 +8,25 @@ public class MainMenuUI : MonoBehaviour
 {
     public Toggle freeAimToggle;
     public TMP_Dropdown mapDropdown;
+    public TMP_Dropdown musicDropdown;
     public string[] maps;
+    public AudioClip[] tunes;
 
     void Start()
     {
         freeAimToggle.isOn = GameManager.instance.freeAim;
+    }
+
+    public void OnMusicChange()
+    {
+        if (GameManager.instance.pizzaTime == false)
+        {
+            if (musicDropdown.value > 0)
+            {
+                GameManager.instance.musicAudioSource.clip = tunes[musicDropdown.value - 1];
+                GameManager.instance.musicAudioSource.Play();
+            }
+        }
     }
 
     public void PlayButton()
