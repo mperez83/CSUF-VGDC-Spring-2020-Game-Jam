@@ -132,6 +132,14 @@ public class MatchHandler : MonoBehaviour
         });
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            FadeHandler.instance.FadeOut("MainMenu", 0.25f);
+        }
+    }
+
     public void EndGame(int playerThatDidNotWin)
     {
         if (!endingGame)

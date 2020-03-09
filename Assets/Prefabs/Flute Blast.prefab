@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
-  duration: 0.75
+  duration: 0.5
   damage: 1
   rb: {fileID: 5530741230304170853}
   circleCollider2D: {fileID: 5759144858786800472}

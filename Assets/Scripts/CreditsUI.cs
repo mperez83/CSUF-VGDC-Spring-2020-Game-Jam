@@ -9,7 +9,7 @@ public class CreditsUI : MonoBehaviour
     public void BackButton()
     {
         GameManager.instance.selectAudioSource.Play();
-        FadeHandler.instance.FadeOut("MainMenu", 0.5f);
+        FadeHandler.instance.FadeOut("MainMenu", 0.25f);
     }
 
     public void SecretButton()
