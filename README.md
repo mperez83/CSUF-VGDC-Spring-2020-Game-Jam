@@ -1,5 +1,5 @@
 # GJ-Socratic-Symphony
-Unity game submission for VGDC's Slam Jam 2020! In this game, you fight against another friend in an arena where you shoot instruments at eachother.
+Unity game submission for VGDC's Slam Jam! In this game, you fight against another friend in an arena where you shoot instruments at eachother.
 
 Play it here: https://star-games.itch.io/socratic-symphony
 
